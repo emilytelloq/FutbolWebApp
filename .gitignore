@@ -1,0 +1,6 @@
+Programs/
+Data/*.dat
+Data/*.k0*
+*.tmp
+*.bak
+IdeSrc/Workspace.loc

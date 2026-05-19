@@ -1,0 +1,58 @@
+////////////////////////////////////////////////////////////
+Starting conversion at 19/05/2026 1:03:22,189
+////////////////////////////////////////////////////////////
+Progress:ERROR 4402: Connection Id '' not found
+ERROR 4402: Connection Id '' not found
+
+------------------------------------------------------------
+Converting Recnum table: 253, CodeType, Code Maintenance Type Table
+Progress:Start time: 19/05/2026 1:03:22,197
+Start time: 19/05/2026 1:03:22,197
+Structure_Start
+Structure_Copy
+Set_Attribute DF_FILE_RECNUM_TABLE to 0
+Replacing recnum with primary index:1
+Set_Attribute DF_FILE_PRIMARY_INDEX to 1
+Set_Attribute DF_INDEX_SQL_PRIMARY_KEY to 1
+AssignMinimalLength
+RealignOverlaps
+Structure_End
+Progress:Creating new table.
+Creating new table.
+Progress:ERROR 12289: General error 42S01 (1050)--[MySQL][ODBC 8.4(w) Driver][mysqld-12.2.2-MariaDB]Table 'codetype' already exists  Table = CodeType (0), Source = ODBC_DRV.Structure_End.CreateTable
+ERROR 12289: General error 42S01 (1050)--[MySQL][ODBC 8.4(w) Driver][mysqld-12.2.2-MariaDB]Table 'codetype' already exists  Table = CodeType (0), Source = ODBC_DRV.Structure_End.CreateTable
+Progress:End time: 19/05/2026 1:03:22,206
+End time: 19/05/2026 1:03:22,206
+Progress:Total time to convert table: 0:0:0:0,009
+Total time to convert table: 0:0:0:0,009
+
+------------------------------------------------------------
+Converting Recnum table: 263, WebAppSession, WebApp Session
+Progress:Start time: 19/05/2026 1:03:22,208
+Start time: 19/05/2026 1:03:22,208
+Structure_Start
+Structure_Copy
+Set_Attribute DF_FILE_RECNUM_TABLE to 0
+Replacing recnum with primary index:1
+Set_Attribute DF_FILE_PRIMARY_INDEX to 1
+Set_Attribute DF_INDEX_SQL_PRIMARY_KEY to 1
+AssignMinimalLength
+RealignOverlaps
+Structure_End
+Progress:Creating new table.
+Creating new table.
+Progress:ERROR 12289: General error 42S01 (1050)--[MySQL][ODBC 8.4(w) Driver][mysqld-12.2.2-MariaDB]Table 'webappsession' already exists  Table = WebAppSession (0), Source = ODBC_DRV.Structure_End.CreateTable
+ERROR 12289: General error 42S01 (1050)--[MySQL][ODBC 8.4(w) Driver][mysqld-12.2.2-MariaDB]Table 'webappsession' already exists  Table = WebAppSession (0), Source = ODBC_DRV.Structure_End.CreateTable
+Progress:End time: 19/05/2026 1:03:22,211
+End time: 19/05/2026 1:03:22,211
+Progress:Total time to convert table: 0:0:0:0,003
+Total time to convert table: 0:0:0:0,003
+
+############################################################
+List of tables that experienced errors while converting:
+   CodeType - Unable to create.
+   WebAppSes- Unable to create.
+////////////////////////////////////////////////////////////
+Finished conversion at 19/05/2026 1:03:22,213
+Total conversion time: 0:0:0:0,016
+////////////////////////////////////////////////////////////
