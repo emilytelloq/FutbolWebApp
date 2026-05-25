@@ -1,14 +1,9 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectLiga.wo
-// Ligas
-//
-
-Use cWebView.pkg
+﻿Use cWebView.pkg
 Use cWebList.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebColumnButton.pkg
 Use cWebColumn.pkg
-Use ZoomLiga.wo
 
 Use cligaDataDictionary.dd
 
@@ -21,11 +16,10 @@ Object oSelectLiga is a cWebView
     Set piMaxWidth to 1024
 
     Object oliga_DD is a cligaDataDictionary
-    End_Object 
+    End_Object
 
-    Set Main_DD To oliga_DD
-    Set Server  To oliga_DD
-
+    Set Main_DD to oliga_DD
+    Set Server  to oliga_DD
 
     Object oList is a cWebList
         Set piColumnSpan to 0
@@ -39,25 +33,25 @@ Object oSelectLiga is a cWebView
             Entry_Item liga.Nombre
             Set psCaption to "liga.Nombre"
             Set piWidth to 1000
-        End_Object 
+        End_Object
 
         Object oligaPais is a cWebColumn
             Entry_Item liga.Pais
             Set psCaption to "liga.Pais"
             Set piWidth to 500
-        End_Object 
+        End_Object
 
         Object oligaEquipos is a cWebColumn
             Entry_Item liga.Equipos
             Set psCaption to "liga.Equipos"
             Set piWidth to 100
-        End_Object 
+        End_Object
 
         Object oligaEquiposMax is a cWebColumn
             Entry_Item liga.EquiposMax
             Set psCaption to "liga.EquiposMax"
             Set piWidth to 100
-        End_Object 
+        End_Object
 
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
@@ -78,43 +72,17 @@ Object oSelectLiga is a cWebView
                 Move True to NavigateData.bReadOnly
             End_Procedure
 
-        End_Object 
-
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-//        WebRegisterPath ntNavigateForward oSelectView
+        End_Object
 
         Procedure OnRowClick String sRowId
-            tWebNavigateData NavigateData
-            Get GetNavigateData to NavigateData
-
-            Case Begin
-                Case (NavigateData.eNavigateType = nfFromParent)
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
-//                    Send NavigateForward of oSelectView Self
-                    Case Break
-
-                Case (NavigateData.eNavigateType = nfFromChild)
-                    Send NavigateClose Self
-                    Case Break
-
-                Case (NavigateData.eNavigateType = nfFromMain)
-                    Send NavigateClose Self
-                    Case Break
-
-                Case Else // must be nfUndefined
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
-//                    Send NavigateForward of oSelectView Self
-
-            Case End
+            Send NavigateForward of oZoomLiga Self
         End_Procedure
 
         Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
             Move True to NavigateData.bReadOnly
         End_Procedure
 
-    End_Object 
+    End_Object
 
     Object oActionGroup is a cWebMenuGroup
 
@@ -125,8 +93,7 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
             Procedure OnClick
                 Send Search of oList
             End_Procedure
-
-        End_Object 
+        End_Object
 
         Object oNewButton is a cWebMenuItem
             Set psCSSClass to "WebClearMenuItem"
@@ -141,9 +108,9 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
             Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
                 Move True to NavigateData.bNewRecord
             End_Procedure
+        End_Object
 
-        End_Object 
-    End_Object 
+    End_Object
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
         WebSet pbRender of oNewButton to True
@@ -151,24 +118,20 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
 
         Case Begin
             Case (NavigateData.eNavigateType = nfFromParent)
-                // If from parent, this is a constrained drill down
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromChild)
-                // If from child, this is a probably a parent lookup from a Zoom
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromMain)
-                // If from main, this is a probably a main-file lookup from a Zoom
                 WebSet pbRender of oDetailButton to False
                 Case Break
 
-            Case Else // must be nfUndefined
-                // This may be the start of a drilldown query or this may be used for some kind of custom query.
+            Case Else
+                Case Break
 
         Case End
 
     End_Procedure
 
-
-End_Object 
+End_Object

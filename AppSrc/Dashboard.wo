@@ -11,12 +11,6 @@ Use cWebLabel.pkg
 Use cWebList.pkg
 Use cWebColumn.pkg
 
-Use SelectEntrenador.wo
-Use SelectEquipo.wo
-Use SelectJugador.wo
-Use SelectLiga.wo
-Use SelectPosicion.wo
-
 Object oDashboard is a cWebView
 
     Set piMaxWidth to 1024
@@ -24,19 +18,13 @@ Object oDashboard is a cWebView
     Set peViewType to vtUndefined
     Set pbShowCaption to False
     Set psCSSClass to "Dashboard"
-    
-WebRegisterPath ntNavigateForward oSelectEntrenador
-WebRegisterPath ntNavigateForward oSelectEquipo
-WebRegisterPath ntNavigateForward oSelectJugador
-WebRegisterPath ntNavigateForward oSelectLiga
-WebRegisterPath ntNavigateForward oSelectPosicion
-    
+
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 24
-        
+
         WebSetResponsive piColumnCount rmMobile to 1
         WebSetResponsive piColumnCount rmTabletPortrait to 16
-    
+
         Object oTiles_grp is a cWebGroup
             Set piColumnSpan to 8
             Set pbShowBorder to False
@@ -49,8 +37,11 @@ WebRegisterPath ntNavigateForward oSelectPosicion
                 Set piColumnSpan to 6
                 Set psCSSClass to "Tile Light"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Entrenadores</div><div class="Tile_Subtitle"></div></div>'
+
+                WebRegisterPath ntNavigateForward oSelectEntrenador
+
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectEntrenador Self
+                    Send NavigatePath
                 End_Procedure
             End_Object
 
@@ -60,8 +51,11 @@ WebRegisterPath ntNavigateForward oSelectPosicion
                 Set piColumnIndex to 6
                 Set psCSSClass to "Tile LightAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Equipos</div><div class="Tile_Subtitle"></div></div>'
+
+                WebRegisterPath ntNavigateForward oSelectEquipo
+
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectEquipo Self
+                    Send NavigatePath
                 End_Procedure
             End_Object
 
@@ -70,8 +64,11 @@ WebRegisterPath ntNavigateForward oSelectPosicion
                 Set piColumnSpan to 6
                 Set psCSSClass to "Tile Dark"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Jugadores</div><div class="Tile_Subtitle"></div></div>'
+
+                WebRegisterPath ntNavigateForward oSelectJugador
+
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectJugador Self
+                    Send NavigatePath
                 End_Procedure
             End_Object
 
@@ -81,8 +78,11 @@ WebRegisterPath ntNavigateForward oSelectPosicion
                 Set piColumnIndex to 6
                 Set psCSSClass to "Tile DarkAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Ligas</div><div class="Tile_Subtitle"></div></div>'
+
+                WebRegisterPath ntNavigateForward oSelectLiga
+
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectLiga Self
+                    Send NavigatePath
                 End_Procedure
             End_Object
 
@@ -91,15 +91,18 @@ WebRegisterPath ntNavigateForward oSelectPosicion
                 Set piColumnSpan to 6
                 Set psCSSClass to "Tile Light"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Posiciones</div><div class="Tile_Subtitle"></div></div>'
+
+                WebRegisterPath ntNavigateForward oSelectPosicion
+
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectPosicion Self
+                    Send NavigatePath
                 End_Procedure
             End_Object
 
         End_Object
-    
+
     End_Object
-    
+
     Procedure OnBeforeShow
     End_Procedure
 
