@@ -67,6 +67,7 @@ Object oZoomJugador is a cWebView
             Set psLabel to "Equipo"
             Set pbPromptButton to True
 
+            // Navegación nfFromChild -> SelectEquipo (Select del padre)
             WebRegisterPath ntNavigateForward oSelectEquipo
 
             Procedure OnPrompt
@@ -118,6 +119,7 @@ Object oZoomJugador is a cWebView
             End_Procedure
         End_Object
 
+        // Navegación nfUndefined -> SelectPosicion (sin relación directa)
         Object oPosicionesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Search"
             Set psCaption to "Posiciones"
