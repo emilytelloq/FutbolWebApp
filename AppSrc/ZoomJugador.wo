@@ -3,6 +3,7 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebCombo.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -51,12 +52,22 @@ Object oZoomJugador is a cWebView
             Set psLabel to "Apellido"
         End_Object
 
-        Object ojugadorNacionalidad is a cWebForm
+        Object ojugadorNacionalidad is a cWebCombo
             Entry_Item jugador.Nacionalidad
             Set piColumnSpan to 8
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
+            Set pbAddEmptyItem to True
+
+            Procedure OnFill
+                Send AddComboItem "ALE" "Alemán"
+                Send AddComboItem "ARG" "Argentino"
+                Send AddComboItem "BRA" "Brasileño"
+                Send AddComboItem "ESP" "Español"
+                Send AddComboItem "FRA" "Francés"
+            End_Procedure
+
         End_Object
 
         Object oequipoNombre is a cWebForm
@@ -118,6 +129,17 @@ Object oZoomJugador is a cWebView
             End_Procedure
         End_Object
 
+        Object oDespedirBtn is a cWebMenuItem
+            Set psCSSClass to "WebDeleteMenuItem"
+            Set psCaption to "Despedir"
+            Set peActionDisplay to adMenu
+
+            Procedure OnClick
+                Send Request_ClearBindingTable of oequipoNombre
+            End_Procedure
+
+        End_Object
+
         Object oPosicionesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Search"
             Set psCaption to "Posiciones"
@@ -145,6 +167,7 @@ Object oZoomJugador is a cWebView
         WebSet pbRender of oSaveBtn to False
         WebSet pbRender of oCancelChangesBtn to False
         WebSet pbRender of oDeleteBtn to False
+        WebSet pbRender of oDespedirBtn to False
 
         If (NavigateData.bReadOnly) Begin
             WebSet pbRender of oEditBtn to True
@@ -153,6 +176,7 @@ Object oZoomJugador is a cWebView
             WebSet pbRender of oSaveBtn to True
             WebSet pbRender of oCancelChangesBtn to True
             WebSet pbRender of oDeleteBtn to bHasRecord
+            WebSet pbRender of oDespedirBtn to bHasRecord
         End
     End_Procedure
 

@@ -1,4 +1,5 @@
 ﻿Use DataDict.pkg
+Use Ddvaltbl.pkg
 
 Open jugador
 Open equipo
@@ -8,13 +9,18 @@ Class cjugadorDataDictionary is a DataDictionary
     Procedure Construct_Object
         Forward Send Construct_Object
         Set Main_File to jugador.File_Number
-
         Set Add_Server_File to equipo.File_Number
-
         Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+        Set ParentNullAllowed equipo.File_Number to True
+
+        Object oNacionalidadValidation is a CodeValidationTable
+            Set Type_Value to "NACIONALID"
+        End_Object
+
+        Set Field_Value_Table 4 to oNacionalidadValidation
 
     End_Procedure
 
